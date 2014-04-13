@@ -66,7 +66,7 @@
      <rect>
       <x>10</x>
       <y>510</y>
-      <width>91</width>
+      <width>41</width>
       <height>23</height>
      </rect>
     </property>
@@ -74,15 +74,15 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Уменьшить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
-     <string>Приблизить</string>
+     <string>+</string>
     </property>
    </widget>
    <widget class="QPushButton" name="zoomOutBtn">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>60</x>
       <y>510</y>
-      <width>81</width>
+      <width>41</width>
       <height>23</height>
      </rect>
     </property>
@@ -90,7 +90,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увеличить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
-     <string>Отдалить</string>
+     <string>-</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">

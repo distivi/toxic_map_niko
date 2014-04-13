@@ -218,6 +218,11 @@
         <string>4 м/с</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>5 м/с</string>
+       </property>
+      </item>
      </widget>
     </item>
    </layout>
