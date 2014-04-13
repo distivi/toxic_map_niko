@@ -25,8 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::updateMap(double scaleFactor)
 {
+    if(scaleFactor <= 0.2) scaleFactor = 0.2;
     displayImgLbl = new QLabel("");
-    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg.scaled(scaleFactor*this->mapImg.width(),scaleFactor*this->mapImg.height())));
+    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg.scaled(scaleFactor*this->mapImg.width(), scaleFactor*this->mapImg.height() )));
     displayImgLbl->resize(displayImgLbl->pixmap()->size());
     displayImgLbl->adjustSize();
     scrollH = ui->scrollArea->horizontalScrollBar()->value();

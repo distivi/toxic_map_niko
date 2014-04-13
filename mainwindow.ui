@@ -74,7 +74,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Уменьшить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
-     <string>Уменьшить</string>
+     <string>Приблизить</string>
     </property>
    </widget>
    <widget class="QPushButton" name="zoomOutBtn">
@@ -90,7 +90,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увеличить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
-     <string>Увеличить</string>
+     <string>Отдалить</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
