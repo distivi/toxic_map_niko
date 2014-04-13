@@ -5,6 +5,9 @@
 #include <QMouseEvent>
 #include <QLabel>
 #include "inputparamsdialog.h"
+#include <QScrollBar>
+
+#include <src/ToxicCalc.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -22,12 +25,20 @@ public slots:
     void mouseClicked(QMouseEvent * e);
     void setParamsBtnPressed();
     void calculate();
-    void zoom();
+    void zoomIn();
+    void zoomOut();
+    void adjustScrollBar(QScrollBar* scrollBar, double scaleFactor, int lastValue);
+    void updateMap(double scaleFactor);
 
 private:
     Ui::MainWindow *ui;
     QLabel* displayImgLbl;
     InputParamsDialog* inputParamsDialog;
+    QImage mapImg;
+    double scaleFactor;
+    int scrollH;
+    int scrollV;
+    ToxicCalc calc;
 };
 
 #endif // MAINWINDOW_H

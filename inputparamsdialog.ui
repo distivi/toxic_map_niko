@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>242</width>
-    <height>207</height>
+    <width>269</width>
+    <height>268</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>160</y>
+     <y>220</y>
      <width>181</width>
      <height>32</height>
     </rect>
@@ -34,8 +34,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>211</width>
-     <height>141</height>
+     <width>251</width>
+     <height>170</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -185,6 +185,37 @@
       <item>
        <property name="text">
         <string>От 2 и выше</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Скорость ветра</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QComboBox" name="comboBox_6">
+      <item>
+       <property name="text">
+        <string>1 м/с</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2 м/с</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3 м/с</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4 м/с</string>
        </property>
       </item>
      </widget>

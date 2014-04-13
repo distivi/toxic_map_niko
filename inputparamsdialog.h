@@ -17,9 +17,13 @@ public:
     ~InputParamsDialog();
     std::map<std::string,std::string> getCalculationParamsMap();
 
+public slots:
+    void setTemperatureValues();
+
 private:
     Ui::InputParamsDialog *ui;
     std::map<std::string,std::string> params;
+    std::map<std::string,std::string> dbParamsAdapterMap;
 };
 
 #endif // INPUTPARAMSDIALOG_H

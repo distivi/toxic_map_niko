@@ -9,19 +9,38 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     inputParamsDialog = new InputParamsDialog(this);
-    QImage mapImg;
-    mapImg.load("media/map.png");
+    this->mapImg.load("media/map.png");
+    scaleFactor=.2;
+    scrollH=0;
+    scrollV=0;
 
-    displayImgLbl = new QLabel("");
-    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg));
-    displayImgLbl->adjustSize();
-
-    ui->scrollArea->setWidget(displayImgLbl);
+    this->updateMap(scaleFactor);
 
     //QObject::connect(this->displayImgLbl,SIGNAL(mousePressEvent(QMouseEvent*) ),this,SLOT(mouseClicked(QMouseEvent*)));
     QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(setParamsBtnPressed()));
     QObject::connect(inputParamsDialog,SIGNAL(accepted()),this,SLOT(calculate()));
-    QObject::connect(ui->zoomBtn,SIGNAL(clicked()),this,SLOT(zoom()));
+    QObject::connect(ui->zoomInBtn,SIGNAL(clicked()),this,SLOT(zoomIn()));
+    QObject::connect(ui->zoomOutBtn,SIGNAL(clicked()),this,SLOT(zoomOut()));
+}
+
+void MainWindow::updateMap(double scaleFactor)
+{
+    displayImgLbl = new QLabel("");
+    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg.scaled(scaleFactor*this->mapImg.width(),scaleFactor*this->mapImg.height())));
+    displayImgLbl->resize(displayImgLbl->pixmap()->size());
+    displayImgLbl->adjustSize();
+    scrollH = ui->scrollArea->horizontalScrollBar()->value();
+    scrollV = ui->scrollArea->verticalScrollBar()->value();
+    qDebug() << "VSB start value" << ui->scrollArea->horizontalScrollBar()->value();
+    this->adjustScrollBar(ui->scrollArea->horizontalScrollBar(),scaleFactor,scrollH);
+    this->adjustScrollBar(ui->scrollArea->verticalScrollBar(),scaleFactor,scrollV);
+    qDebug() << "VSB updated value" << ui->scrollArea->horizontalScrollBar()->value();
+    ui->scrollArea->setWidget(displayImgLbl);
+
+    QCursor cursor;
+    qDebug()<<"Cur pos" <<cursor.pos();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -43,13 +62,39 @@ void MainWindow::setParamsBtnPressed()
 void MainWindow::calculate()
 {
     qDebug() << "Calсulation started";
+    std::map<std::string,std::string> data = inputParamsDialog->getCalculationParamsMap();
+    calc.define_deep(data["svsp"],data["temp"],data["chemicals"],data["ohv_value"],data["wind"],data["obval"]);
+
+    double width = calc.getWidth();
+    qDebug()<< "Calculated width=" << width;
+
+    ui->calculatedWidthEdit->setText(QString::number(width));
 }
 
-void MainWindow::zoom()
+void MainWindow::zoomIn()
 {
-    qDebug()<<"Zoom";
+    scaleFactor+=.1;
+    qDebug()<< displayImgLbl->pixmap()->size();
+    this->updateMap(scaleFactor);
+    qDebug()<< displayImgLbl->pixmap()->size();
+
+}
+
+void MainWindow::zoomOut()
+{
+    scaleFactor-=.1;
     qDebug()<< displayImgLbl->pixmap()->size() << displayImgLbl->size();
-    displayImgLbl->resize(0.1*displayImgLbl->pixmap()->size());
-    ui->scrollArea->setWidget(displayImgLbl);
+    this->updateMap(scaleFactor);
     qDebug()<< displayImgLbl->pixmap()->size() << displayImgLbl->size();
+    //this->adjustScrollBar(ui->scrollArea->horizontalScrollBar(),scaleFactor);
+    //this->adjustScrollBar(ui->scrollArea->verticalScrollBar(),scaleFactor);
+
+}
+
+void MainWindow::adjustScrollBar(QScrollBar* scrollBar,double scaleFactor, int lastValue)
+{
+    qDebug() << "SB old value" << scrollBar->value();
+    qDebug() << "lastValue=" << lastValue;
+    scrollBar->setValue(int(10*scaleFactor * lastValue));
+    qDebug() << "SB new value" << scrollBar->value();
 }

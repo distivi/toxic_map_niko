@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>500</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
-    <height>500</height>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="mouseTracking">
@@ -34,12 +34,18 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>691</width>
-      <height>411</height>
+      <width>771</width>
+      <height>491</height>
      </rect>
     </property>
     <property name="mouseTracking">
      <bool>true</bool>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -49,36 +55,78 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>689</width>
-       <height>409</height>
+       <width>755</width>
+       <height>475</height>
       </rect>
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="zoomInBtn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Уменьшить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Уменьшить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="zoomOutBtn">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>510</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увеличить масштаб&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Увеличить</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>20</y>
-      <width>80</width>
+      <x>220</x>
+      <y>510</y>
+      <width>181</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Установить параметры</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="zoomBtn">
+   <widget class="QLineEdit" name="calculatedWidthEdit">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>60</y>
-      <width>80</width>
+      <x>600</x>
+      <y>510</y>
+      <width>113</width>
       <height>23</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>510</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>Zoom</string>
+     <string>Расчитаная ширина (км):</string>
     </property>
    </widget>
   </widget>
