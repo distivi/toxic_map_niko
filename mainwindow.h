@@ -27,7 +27,7 @@ public slots:
     void calculate();
     void zoomIn();
     void zoomOut();
-    void adjustScrollBar(QScrollBar* scrollBar, double scaleFactor, int lastValue);
+    void adjustScrollBar(QScrollBar* scrollBar, int lastValue);
     void updateMap(double scaleFactor);
 
 private:

@@ -25,21 +25,24 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::updateMap(double scaleFactor)
 {
-    if(scaleFactor <= 0.2) scaleFactor = 0.2;
+    /* Keep map display centered */
+    if(scaleFactor <= 0.2) scaleFactor = 0.2; // control map size not less than base size
     displayImgLbl = new QLabel("");
-    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg.scaled(scaleFactor*this->mapImg.width(), scaleFactor*this->mapImg.height() )));
+    displayImgLbl->setPixmap(QPixmap::fromImage(mapImg.scaled(scaleFactor*this->mapImg.width(), scaleFactor*this->mapImg.height())));
     displayImgLbl->resize(displayImgLbl->pixmap()->size());
     displayImgLbl->adjustSize();
     scrollH = ui->scrollArea->horizontalScrollBar()->value();
     scrollV = ui->scrollArea->verticalScrollBar()->value();
-    qDebug() << "VSB start value" << ui->scrollArea->horizontalScrollBar()->value();
-    this->adjustScrollBar(ui->scrollArea->horizontalScrollBar(),scaleFactor,scrollH);
-    this->adjustScrollBar(ui->scrollArea->verticalScrollBar(),scaleFactor,scrollV);
-    qDebug() << "VSB updated value" << ui->scrollArea->horizontalScrollBar()->value();
+    //qDebug() << "VSB start value" << ui->scrollArea->horizontalScrollBar()->value();
+
+
+    //qDebug() << "VSB updated value" << ui->scrollArea->horizontalScrollBar()->value() << scrollV;
     ui->scrollArea->setWidget(displayImgLbl);
+    this->adjustScrollBar(ui->scrollArea->verticalScrollBar(),scrollV);
+    this->adjustScrollBar(ui->scrollArea->horizontalScrollBar(),scrollH);
 
     QCursor cursor;
-    qDebug()<<"Cur pos" <<cursor.pos();
+    //qDebug()<<"Cur pos" <<cursor.pos();
 
 
 }
@@ -92,10 +95,11 @@ void MainWindow::zoomOut()
 
 }
 
-void MainWindow::adjustScrollBar(QScrollBar* scrollBar,double scaleFactor, int lastValue)
+void MainWindow::adjustScrollBar(QScrollBar* scrollBar,int lastValue)
 {
-    qDebug() << "SB old value" << scrollBar->value();
-    qDebug() << "lastValue=" << lastValue;
-    scrollBar->setValue(int(10*scaleFactor * lastValue));
-    qDebug() << "SB new value" << scrollBar->value();
+    //qDebug() << "SB old value" << scrollBar->value();
+    //qDebug() << "lastValue=" << lastValue;
+    //scrollBar->setValue(int(10*scaleFactor/2 * lastValue));
+    scrollBar->setValue(int(lastValue));
+    //qDebug() << "SB new value" << scrollBar->value();
 }
