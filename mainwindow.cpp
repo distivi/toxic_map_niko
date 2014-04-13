@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     inputParamsDialog = new InputParamsDialog(this);
     QImage mapImg;
-    mapImg.load("media/dawn_of_ubuntu.png");
+    mapImg.load("media/map.png");
 
     displayImgLbl = new QLabel("");
     displayImgLbl->setPixmap(QPixmap::fromImage(mapImg));
@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //QObject::connect(this->displayImgLbl,SIGNAL(mousePressEvent(QMouseEvent*) ),this,SLOT(mouseClicked(QMouseEvent*)));
     QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(setParamsBtnPressed()));
     QObject::connect(inputParamsDialog,SIGNAL(accepted()),this,SLOT(calculate()));
+    QObject::connect(ui->zoomBtn,SIGNAL(clicked()),this,SLOT(zoom()));
 }
 
 MainWindow::~MainWindow()
@@ -42,4 +43,13 @@ void MainWindow::setParamsBtnPressed()
 void MainWindow::calculate()
 {
     qDebug() << "Calсulation started";
+}
+
+void MainWindow::zoom()
+{
+    qDebug()<<"Zoom";
+    qDebug()<< displayImgLbl->pixmap()->size() << displayImgLbl->size();
+    displayImgLbl->resize(0.1*displayImgLbl->pixmap()->size());
+    ui->scrollArea->setWidget(displayImgLbl);
+    qDebug()<< displayImgLbl->pixmap()->size() << displayImgLbl->size();
 }

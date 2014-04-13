@@ -7,7 +7,6 @@ InputParamsDialog::InputParamsDialog(QWidget *parent) :
     ui(new Ui::InputParamsDialog)
 {
     ui->setupUi(this);
-    QObject::connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(emitCalculateSignal()));
 }
 
 InputParamsDialog::~InputParamsDialog()
@@ -22,3 +21,7 @@ InputParamsDialog::~InputParamsDialog()
     qDebug()<<"ready emited, I hope";
 }
 */
+std::map<std::string,std::string> InputParamsDialog::getCalculationParamsMap()
+{
+    return this->params;
+}

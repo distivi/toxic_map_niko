@@ -22,6 +22,7 @@ public slots:
     void mouseClicked(QMouseEvent * e);
     void setParamsBtnPressed();
     void calculate();
+    void zoom();
 
 private:
     Ui::MainWindow *ui;
