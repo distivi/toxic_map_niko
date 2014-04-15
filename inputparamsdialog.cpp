@@ -29,6 +29,8 @@ std::map<std::string,std::string> InputParamsDialog::getCalculationParamsMap()
     QString ohv_value = ui->comboBox_4->currentText();
     int obval = ui->comboBox_5->currentIndex()+1;
     int wind = ui->comboBox_6->currentIndex()+1;
+    int wind_direction = ui->comboBox_7->currentIndex()+1;
+    QString obj_name = ui->lineEdit->text();
 
     params["svsp"] = dbParamsAdapterMap[svsp.toStdString()];
     params["temp"] = temp.toStdString();
@@ -36,6 +38,8 @@ std::map<std::string,std::string> InputParamsDialog::getCalculationParamsMap()
     params["ohv_value"] = ohv_value.toStdString();
     params["obval"] = QString::number(obval).toStdString();
     params["wind"] = QString::number(wind).toStdString();
+    params["wind_direction"] = QString::number(wind_direction+1).toStdString();
+    params["object"] = obj_name.toStdString();
 
     qDebug()<<svsp << temp << chemicals <<ohv_value<<obval<<wind;
 

@@ -2,12 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMouseEvent>
-#include <QLabel>
-#include "inputparamsdialog.h"
-#include <QScrollBar>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsEllipseItem>
 
-#include <src/ToxicCalc.hpp>
+#include "src/ToxicCalc.hpp"
+#include <src/ExQGraphicsScene.h>
+#include "inputparamsdialog.h"
+#include "ExportImageDialog.h"
+#include "ProgressBarWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,25 +23,26 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void load();
 
 public slots:
-    void mouseClicked(QMouseEvent * e);
-    void setParamsBtnPressed();
-    void calculate();
+    void add_object(QPointF pos, qreal height, qreal width, int wind_direction);
+    void moused();
+    void draw();
     void zoomIn();
     void zoomOut();
-    void adjustScrollBar(QScrollBar* scrollBar, int lastValue);
-    void updateMap(double scaleFactor);
+    void exportImage();
+    void exportCalled();
+    void showProgressBar();
 
 private:
     Ui::MainWindow *ui;
-    QLabel* displayImgLbl;
-    InputParamsDialog* inputParamsDialog;
-    QImage mapImg;
-    double scaleFactor;
-    int scrollH;
-    int scrollV;
-    ToxicCalc calc;
+    QGraphicsView* view;
+    ExQGraphicsScene* scene;
+    InputParamsDialog* inputParams;
+    ExportImageDialog* exportImageDialog;
+    ProgressBarWidget* progressBar;
+    qreal zoomFactor;
 };
 
 #endif // MAINWINDOW_H
